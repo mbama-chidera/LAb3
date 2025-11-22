@@ -4,6 +4,11 @@ import { View, TextInput, Button, StyleSheet } from 'react-native';
 export default function ToDoForm({ addTask }) {
   const [taskText, setTaskText] = useState('');
 
+  const handleAdd = () => {
+    addTask(taskText);
+    setTaskText(''); // clears input
+  };
+
   return (
     <View style={styles.form}>
       <TextInput
@@ -15,7 +20,7 @@ export default function ToDoForm({ addTask }) {
 
       <Button 
         title="Add Task" 
-        onPress={() => addTask(taskText)} 
+        onPress={handleAdd}
       />
     </View>
   );
@@ -24,15 +29,17 @@ export default function ToDoForm({ addTask }) {
 const styles = StyleSheet.create({
   form: {
     flexDirection: 'row',
-    gap: 10,
+    alignItems: 'center',
     marginTop: 20,
+    gap: 10,
   },
   input: {
     flex: 1,
     borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 10,
-    borderRadius: 6,
+    borderColor: '#bbb',
+    padding: 12,
+    borderRadius: 8,
     fontSize: 16,
+    backgroundColor: '#f9f9f9',
   },
 });

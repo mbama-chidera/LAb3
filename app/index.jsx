@@ -11,19 +11,20 @@ export default function App() {
     'Walk dog'
   ]);
 
-  // Add Task Function
   const addTask = (taskText) => {
-    setTasks([...tasks, taskText]); // update list
+    const clean = taskText.trim();
+    if (!clean) return;                          // prevent empty tasks
+    if (tasks.includes(clean)) return;           // prevent duplicates
+
+    setTasks([...tasks, clean]);                 // add new task
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>My Task List</Text>
 
-      {/* Task List */}
       <ToDoList tasks={tasks} />
 
-      {/* Form that adds tasks */}
       <ToDoForm addTask={addTask} />
     </View>
   );
